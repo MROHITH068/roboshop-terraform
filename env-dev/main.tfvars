@@ -1,4 +1,5 @@
 env="dev"
+
 component = {
   frontend = {
     tags: {"Monitor": "true","env": "dev"}
@@ -30,4 +31,10 @@ component = {
   shipping = {
     tags: {"Monitor": "true","env": "dev"}
   }
+}
+
+tags = {
+  company_name = "XYZ Tech"
+  business = "ecommerce"
+  project_name= "roboshop"
 }
