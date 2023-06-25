@@ -3,5 +3,5 @@ module "test" {
   component= each.key
   source = "git::https://github.com/MROHITH068/terraform-module-app.git"
   env=var.env
-  tags=each.value[tags]
+  tags=each.value["tags"]
 }
