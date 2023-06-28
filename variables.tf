@@ -1,2 +1,4 @@
 variable "env" {}
-variable "component" {}
+#variable "component" {}
+variable "tags" {}
+variable "vpc" {}
