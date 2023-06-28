@@ -10,5 +10,5 @@ module "vpc" {
   source = "git::https://github.com/MROHITH068/terraform-module-vpc.git"
 
   for_each = var.vpc
-  cidr_bloc = each.value["cidr_block"]
+  cidr_block = each.value["cidr_block"]
 }
