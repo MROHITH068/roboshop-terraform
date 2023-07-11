@@ -18,14 +18,10 @@ module "vpc" {
 }
 
 
-output "subnet_ids" {
-  value = module.vpc
+module "app_server" {
+  component= "test"
+  source = "git::https://github.com/MROHITH068/terraform-module-app.git"
+  tags= var.tags
+  env = var.env
+  subnet_id = lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"app",null),"subnet_ids",null)[0]
 }
-
-#module "app_server" {
-#  component= "test"
-#  source = "git::https://github.com/MROHITH068/terraform-module-app.git"
-#  tags= var.tags
-#  env = var.env
-#  subnet_id =
-#}
