@@ -23,5 +23,6 @@ module "app_server" {
   source = "git::https://github.com/MROHITH068/terraform-module-app.git"
   tags= var.tags
   env = var.env
+  vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
   subnet_id = lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"app",null),"subnet_ids",null)[0]
 }
