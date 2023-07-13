@@ -51,7 +51,7 @@ module "rds" {
   database_name = each.value["database_name"]
   engine = each.value["engine"]
   engine_version = each.value["engine_version"]
-  tags= var.tags
+  tags = var.tags
   env = var.env
   subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
 }
