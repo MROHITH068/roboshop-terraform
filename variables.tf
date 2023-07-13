@@ -10,7 +10,7 @@ variable "rabbitmq" {}
 variable "allow_ssh_cidr" {}
 variable "zone_id" {}
 
-variable "rds" {}
-variable "database_name" {}
-variable "engine" {}
-variable "engine_version" {}
+#variable "rds" {}
+#variable "database_name" {}
+#variable "engine" {}
+#variable "engine_version" {}
