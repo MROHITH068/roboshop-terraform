@@ -40,5 +40,6 @@ module "rabbitmq"{
 
   tags= var.tags
   env = var.env
+  zone_id = var.zone_id
   allow_ssh_cidr = var.allow_ssh_cidr
 }
