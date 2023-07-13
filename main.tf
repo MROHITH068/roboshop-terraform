@@ -47,7 +47,7 @@ module "rabbitmq"{
 module "rds" {
   source = "git::https://github.com/MROHITH068/terraform-module-rds.git"
   for_each = var.rds
-  component = each.value["component"]
+  component = each.value[component]
   database_name = each.value["database_name"]
   engine = each.value["engine"]
   engine_version = each.value["engine_version"]
