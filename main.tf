@@ -42,16 +42,17 @@ module "rabbitmq"{
   env = var.env
   zone_id = var.zone_id
   allow_ssh_cidr = var.allow_ssh_cidr
+  kms_key_id = var.kms_key_id
 }
 
-module "rds" {
-  source = "git::https://github.com/MROHITH068/terraform-module-rds.git"
-  for_each = var.rds
-  component = each.value["component"]
-  database_name = each.value["database_name"]
-  engine = each.value["engine"]
-  engine_version = each.value["engine_version"]
-  tags = var.tags
-  env = var.env
-  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
-}
+#module "rds" {
+#  source = "git::https://github.com/MROHITH068/terraform-module-rds.git"
+#  for_each = var.rds
+#  component = each.value["component"]
+#  database_name = each.value["database_name"]
+#  engine = each.value["engine"]
+#  engine_version = each.value["engine_version"]
+#  tags = var.tags
+#  env = var.env
+#  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
+#}

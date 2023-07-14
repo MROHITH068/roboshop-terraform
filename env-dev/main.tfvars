@@ -81,3 +81,5 @@ rds = {
     database_name = "dummy"
   }
 }
+
+kms_key_id = "8dd96880-9b44-4bb8-b1f2-1f5940d93f11"
