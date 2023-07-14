@@ -85,11 +85,18 @@ rds = {
 documentdb = {
   main = {
     component = "docdb"
+     engine = "docdb"
+     engine_version = "4.0.0"
+     db_instance_count = 1
+     instance_class = "db.t3.medium"
   }
 }
 
 elasticache = {
   main = {
     component = "elasticache"
+    node_type = "cache.t3.micro"
+    replicas_per_node_group = 1
+    num_node_groups = 1
   }
 }
