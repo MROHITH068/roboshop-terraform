@@ -52,10 +52,14 @@ module "rds" {
   database_name = each.value["database_name"]
   engine = each.value["engine"]
   engine_version = each.value["engine_version"]
-  tags = var.tags
-  env = var.env
-  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
-  kms_key_arn = var.kms_key_arn
   instance_class = each.value["instance_class"]
   instance_count = each.value["instance_count"]
+
+  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
+  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
+
+  kms_key_arn = var.kms_key_arn
+  tags = var.tags
+  env = var.env
+
 }
