@@ -12,3 +12,5 @@ variable "kms_key_id" {}
 
 variable "rds" {}
 variable "kms_key_arn" {}
+variable "instance_class" {}
+variable "instance_count" {}

@@ -56,4 +56,6 @@ module "rds" {
   env = var.env
   subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
   kms_key_arn = var.kms_key_arn
+  instance_class = each.value["instance_class"]
+  instance_count = each.value["instance_count"]
 }
