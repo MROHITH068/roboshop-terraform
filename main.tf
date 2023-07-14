@@ -90,6 +90,8 @@ module "elasticache" {
   node_type = each.value["node_type"]
   replicas_per_node_group = each.value["replicas_per_node_group"]
   num_node_groups = each.value["num_node_groups"]
+  engine = each.value["engine"]
+  engine_version = each.value["engine_version"]
 
   subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
