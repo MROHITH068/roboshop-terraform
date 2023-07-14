@@ -12,3 +12,7 @@ variable "kms_key_id" {}
 
 variable "rds" {}
 variable "kms_key_arn" {}
+
+variable "documentdb" {}
+
+variable "elasticache" {}
