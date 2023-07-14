@@ -66,7 +66,7 @@ module "vpc" {
 
 module "documentdb" {
   source = "git::https://github.com/MROHITH068/terraform-module-documentdb.git"
-  for_each = var.rds
+  for_each = var.documentdb
   component = each.value["component"]
 
 
@@ -80,7 +80,7 @@ module "documentdb" {
 }
 module "elasticache" {
   source = "git::https://github.com/MROHITH068/terraform-module-elasticache.git"
-  for_each = var.rds
+  for_each = var.elasticache
   component = each.value["component"]
 
 
