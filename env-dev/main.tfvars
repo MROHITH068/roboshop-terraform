@@ -103,17 +103,17 @@ elasticache = {
   }
 }
 
-aalb = {
-  public ={
-    name = "public"
-    internal = false
+alb = {
+  public = {
+    name               = "public"
+    internal           = false
     load_balancer_type = "application"
-    subnet_ref = "public"
+    subnet_ref         = "public"
   }
-  private ={
-    name = "private"
-    internal = true
+  private = {
+    name               = "private"
+    internal           = true
     load_balancer_type = "application"
-    subnet_ref = "app"
+    subnet_ref         = "app"
   }
 }
