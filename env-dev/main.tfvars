@@ -103,7 +103,7 @@ elasticache = {
   }
 }
 
-alb = {
+aalb = {
   public ={
     name = "public"
     internal = false
