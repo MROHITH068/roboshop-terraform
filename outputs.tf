@@ -1,3 +1,3 @@
 output "alb" {
-  value = modulelookup(module.alb, "name", null )
+  value = lookup(module.alb, "name", null )
 }
