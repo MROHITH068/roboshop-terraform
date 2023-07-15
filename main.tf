@@ -127,11 +127,13 @@ module "apps" {
   desired_capacity = each.value["desired_capacity"]
   max_size = each.value["max_size"]
   min_size = each.value["min_size"]
+  lb_rule_priority = each.value["lb_rule_priority"]
 
   vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
   subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
   sg_subnet_cidr =  lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),each.value["subnet_ref"],null),"cidr_block",null)
   lb_dns_name = lookup(lookup(module.alb, each.value["lb_ref"], null ),"dns_name",null)
+  listener_arn = lookup(lookup(module.alb, each.value["lb_ref"], null ),"listener_arn",null)
 
   allow_ssh_cidr = var.allow_ssh_cidr
   tags= var.tags
