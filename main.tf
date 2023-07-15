@@ -116,3 +116,25 @@ module "alb" {
   env  = var.env
   tags = var.tags
 }
+
+
+module "apps" {
+  source = "git::https://github.com/MROHITH068/terraform-module-app.git"
+  for_each = var.apps
+  component = each.value["component"]
+  app_port = each.value["app_port"]
+  instance_type = each.value["instance_type"]
+  desired_capacity = each.value["desired_capacity"]
+  max_size = each.value["max_size"]
+  min_size = each.value["min_size"]
+
+  vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
+  subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
+  sg_subnet_cidr =  lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),each.value["subnet_ref"],null),"cidr_block",null)
+
+  allow_ssh_cidr = var.allow_ssh_cidr
+  tags= var.tags
+  env = var.env
+  kms_key_id = var.kms_key_id
+}
+
