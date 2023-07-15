@@ -121,7 +121,7 @@ module "vpc" {
 #}
 
 module "alb" {
-  source = "git::https://github.com/raghudevopsb73/tf-module-alb.git"
+  source = "git::https://github.com/MROHITH068/terraform-module-alb.git"
 
   for_each           = var.alb
   name               = each.value["name"]
