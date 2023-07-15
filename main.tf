@@ -123,7 +123,7 @@ module "vpc" {
 module "alb" {
   source = "git::https://github.com/MROHITH068/terraform-module-alb.git"
 
-  for_each           = var.aalb
+  for_each           = var.alb
   name               = each.value["name"]
   internal           = each.value["internal"]
   load_balancer_type = each.value["load_balancer_type"]
