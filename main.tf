@@ -135,6 +135,6 @@ module "apps" {
   allow_ssh_cidr = var.allow_ssh_cidr
   tags= var.tags
   env = var.env
-  kms_key_id = var.kms_key_id
+  kms_key_id = var.kms_key_arn
 }
 
