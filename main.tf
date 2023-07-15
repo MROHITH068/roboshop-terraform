@@ -124,7 +124,7 @@ module "alb" {
   source = "git::https://github.com/MROHITH068/terraform-module-alb.git"
 
   for_each           = var.aalb
-  name               = each.value["name"]
+  name               = each.value["public"]
 #  internal           = each.value["internal"]
 #  load_balancer_type = each.value["load_balancer_type"]
 #  vpc_id             = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
