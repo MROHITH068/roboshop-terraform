@@ -117,7 +117,6 @@ module "alb" {
 
   vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
 
-  kms_key_arn = var.kms_key_arn
   tags = var.tags
   env = var.env
 }
