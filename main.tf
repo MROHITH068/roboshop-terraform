@@ -63,19 +63,57 @@ module "vpc" {
 #  tags = var.tags
 #  env = var.env
 #}
+#
+#module "documentdb" {
+#  source = "git::https://github.com/MROHITH068/terraform-module-documentdb.git"
+#  for_each = var.documentdb
+#  component = each.value["component"]
+#  engine = each.value["engine"]
+#  engine_version = each.value ["engine_version"]
+#  db_instance_count = each.value["db_instance_count"]
+#  instance_class = each.value["instance_class"]
+#
+#
+#subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
+#  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
+#  vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
+#
+#  kms_key_arn = var.kms_key_arn
+#  tags = var.tags
+#  env = var.env
+#}
+#
+#module "elasticache" {
+#  source = "git::https://github.com/MROHITH068/terraform-module-elasticache.git"
+#  for_each = var.elasticache
+#  component = each.value["component"]
+#  node_type = each.value["node_type"]
+#  replicas_per_node_group = each.value["replicas_per_node_group"]
+#  num_node_groups = each.value["num_node_groups"]
+#  engine = each.value["engine"]
+#  engine_version = each.value["engine_version"]
+#
+#  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
+#  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
+#  vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
+#
+#  kms_key_arn = var.kms_key_arn
+#  tags = var.tags
+#  env = var.env
+#}
 
-module "documentdb" {
-  source = "git::https://github.com/MROHITH068/terraform-module-documentdb.git"
-  for_each = var.documentdb
+
+module "alb" {
+  source = "git::https://github.com/MROHITH068/terraform-module-alb.git"
+  for_each = var.alb
   component = each.value["component"]
-  engine = each.value["engine"]
-  engine_version = each.value ["engine_version"]
-  db_instance_count = each.value["db_instance_count"]
-  instance_class = each.value["instance_class"]
+  name = each.value["name"]
+  internal = each.value["internal"]
+  load_balancer_type = each.value["load_balancer_type"]
 
+  sg_subnet_cidr = each.value["name"]=="public"? ["0.0.0.0/0"] : local.app_web_subnet_cidr
 
-subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
+  subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),each.value["subnet_ref"],null),"subnet_ids",null)
   vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
 
   kms_key_arn = var.kms_key_arn
@@ -83,21 +121,3 @@ subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids
   env = var.env
 }
 
-module "elasticache" {
-  source = "git::https://github.com/MROHITH068/terraform-module-elasticache.git"
-  for_each = var.elasticache
-  component = each.value["component"]
-  node_type = each.value["node_type"]
-  replicas_per_node_group = each.value["replicas_per_node_group"]
-  num_node_groups = each.value["num_node_groups"]
-  engine = each.value["engine"]
-  engine_version = each.value["engine_version"]
-
-  subnet_ids =  lookup(lookup(lookup(lookup(module.vpc, "main", null ),"subnet_ids",null),"db",null),"subnet_ids",null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),"app",null),"cidr_block",null)
-  vpc_id= lookup(lookup(module.vpc, "main", null),"vpc_id",null)
-
-  kms_key_arn = var.kms_key_arn
-  tags = var.tags
-  env = var.env
-}
