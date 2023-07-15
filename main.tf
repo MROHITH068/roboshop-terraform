@@ -106,7 +106,6 @@ module "vpc" {
 module "alb" {
   source = "git::https://github.com/MROHITH068/terraform-module-alb.git"
   for_each = var.alb
-  component = each.value["component"]
   name = each.value["name"]
   internal = each.value["internal"]
   load_balancer_type = each.value["load_balancer_type"]
@@ -121,3 +120,17 @@ module "alb" {
   env = var.env
 }
 
+#module "alb" {
+#  source = "git::https://github.com/raghudevopsb73/tf-module-alb.git"
+#
+#  for_each           = var.alb
+#  name               = each.value["name"]
+#  internal           = each.value["internal"]
+#  load_balancer_type = each.value["load_balancer_type"]
+#  vpc_id             = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+#  sg_subnet_cidr     = each.value["name"] == "public" ? ["0.0.0.0/0"] : local.app_web_subnet_cidr
+#  subnets            = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
+#
+#  env  = var.env
+#  tags = var.tags
+#}
