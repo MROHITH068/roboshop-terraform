@@ -42,7 +42,7 @@ module "rabbitmq"{
   env = var.env
   zone_id = var.zone_id
   allow_ssh_cidr = var.allow_ssh_cidr
-  kms_key_id = var.kms_key_id
+  kms_key_arn = var.kms_key_arn
 }
 
 module "rds" {
