@@ -181,13 +181,13 @@ apps = {
   }
   frontend ={
     component = "frontend"
-    app_port = 8080
+    app_port = 80
     instance_type = "t3.small"
     desired_capacity = 1
     max_size = 1
     min_size = 1
     subnet_ref = "web"
     lb_ref = "public"
-    lb_rule_priority = 106
+    lb_rule_priority = 100
   }
 }
