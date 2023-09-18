@@ -134,6 +134,7 @@ module "apps" {
   sg_subnet_cidr = each.value["component"]=="frontend"? local.public_web_subnet_cidr: lookup(lookup(lookup(lookup(var.vpc, "main", null ),"subnets",null),each.value["subnet_ref"],null),"cidr_block",null)
   lb_dns_name = lookup(lookup(module.alb, each.value["lb_ref"], null ),"dns_name",null)
   listener_arn = lookup(lookup(module.alb, each.value["lb_ref"], null ),"listener_arn",null)
+  extra_param_access = try(each.value["extra_param_access"], [])
 
   allow_ssh_cidr = var.allow_ssh_cidr
   tags= var.tags
