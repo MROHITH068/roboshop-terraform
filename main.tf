@@ -143,5 +143,6 @@ module "apps" {
   tags= var.tags
   env = var.env
   kms_key_arn = var.kms_key_arn
+  allow_prometheus_cidr = var.allow_prometheus_cidr
 }
 
