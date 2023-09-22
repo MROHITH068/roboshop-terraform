@@ -11,5 +11,14 @@ resource "aws_instance" "load-runner" {
   tags = {
     Name="load-runner"
   }
+
+  provisioner "remote-exec" {
+    connection {
+      user = "root"
+      password = "DevOps321"
+      host = self.public_ip
+    }
+
+  }
 }
 
