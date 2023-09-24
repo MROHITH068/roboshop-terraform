@@ -18,7 +18,10 @@ resource "aws_instance" "load-runner" {
       password = "DevOps321"
       host = self.public_ip
     }
-
+inline = [
+"curl https://github.com/linuxautomations/labautomation/blob/master/tools/docker/install.sh | bash",
+  "docker pull robotshop/rs-load:latest"
+]
   }
 }
 
