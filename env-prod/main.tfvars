@@ -180,7 +180,7 @@ apps = {
     subnet_ref = "app"
     lb_ref = "private"
     lb_rule_priority = 105
-    extra_param_access = ["arn:aws:ssm:us-east-1:403215663985:parameter/roboshop.prod.docdb.*","arn:aws:ssm:us-east-1:403215663985:parameter/roboshop.prod.user.mongo"]
+    extra_param_access = ["arn:aws:ssm:us-east-1:403215663985:parameter/roboshop.prod.docdb.*","arn:aws:ssm:us-east-1:403215663985:parameter/roboshop.dev.user.mongo"]
   }
   frontend ={
     component = "frontend"
