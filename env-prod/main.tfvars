@@ -201,6 +201,6 @@ eks ={
     min_size = 2
     max_size= 2
     capacity_type = "SPOT"
-    instance_type = "m2.2xlarge"
+    instance_type = ["m2.2xlarge",]
   }
 }
