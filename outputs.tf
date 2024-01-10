@@ -1,3 +1,3 @@
-output "alb" {
-  value = lookup(module.alb, "name", null )
-}
+#output "alb" {
+#  value = lookup(module.alb, "name", null )
+#}
