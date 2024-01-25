@@ -156,5 +156,6 @@ module "eks" {
   max_size = each.value["max_size"]
   capacity_type = each.value["capacity_type"]
   instance_type = each.value["instance_type"]
+  kms_key_arn = var.kms_key_arn
 }
 
